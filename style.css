@@ -1,85 +1,82 @@
-/* Border box declaration 
-https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-html {
-  box-sizing: border-box;
-}
-/* inherit border-box on all elements in the universe and before and after
- */
-*, 
-*:before, 
-*:after {
-  box-sizing: inherit;
+/* Responsive Flexbox layout for Project 2 */
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+
+:root {
+  --forest: #183f35;
+  --pine: #285943;
+  --sage: #dce8d8;
+  --sand: #f3ead7;
+  --gold: #d5a746;
+  --ink: #24352f;
 }
 
 body {
-	font-family: Arial, Geneva, sans-serif;
-}
-a {
-	color: #2772B0;
-}
-.wrapper {
-	width: 97%;
-	max-width: 1200px;
-	margin: 0 auto;
-	float: none;
-	background-color: #fff;
+  margin: 0;
+  color: var(--ink);
+  background: #f8f6ef;
+  font-family: Arial, Geneva, sans-serif;
+  line-height: 1.45;
 }
 
-div img {
-	width: 100%;
-	max-width: 225px; 
+.site-header {
+  padding: 3.5rem 1.5rem 2.5rem;
+  color: white;
+  text-align: center;
+  background: linear-gradient(rgba(24, 63, 53, .9), rgba(24, 63, 53, .9)),
+    url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1800&q=80") center/cover;
 }
 
-/* grid system -- mobile first! */
-/* flex contatiner */
+.site-header h1 { margin: .2rem 0 .75rem; font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; }
+.eyebrow { margin: 0; color: #f7d98b; font-size: .8rem; font-weight: bold; letter-spacing: .18em; text-transform: uppercase; }
+.intro { max-width: 650px; margin: 0 auto; font-size: 1.1rem; }
 
-.row {
-	display: flex;
-	flex-flow: row wrap;
+.wrapper { width: 94%; max-width: 1200px; margin: 2rem auto; }
+.row { display: flex; flex-flow: row wrap; gap: 1rem; margin-bottom: 1rem; }
+
+[class*="col-"] { min-width: 0; margin: 0; padding: 1rem; flex: 0 0 100%; border-radius: .35rem; }
+article h2 { margin: 0 0 .7rem; color: var(--forest); font-size: 1.35rem; }
+article p { margin: .75rem 0; }
+article img { display: block; width: 100%; height: 190px; object-fit: cover; border-radius: .2rem; }
+a { color: var(--pine); font-weight: bold; }
+
+.park-card, .tip-card, .planning-card, .fact-card { background: var(--sage); }
+.feature-card, .landscape-card { background: var(--sand); }
+.callout-card { color: white; text-align: center; background: var(--forest); }
+.callout-card h2 { color: white; }
+
+.button { display: inline-block; padding: .65rem 1.2rem; color: var(--forest); text-decoration: none; background: #f7d98b; border-radius: 2rem; }
+.row-six .fact-card { display: flex; min-height: 115px; align-items: center; justify-content: center; gap: .6rem; text-align: center; background: var(--gold); }
+.fact-card strong { color: white; font-size: 1.8rem; }
+.fact-card span { font-weight: bold; }
+.site-footer { padding: 1.5rem; color: white; text-align: center; background: var(--forest); }
+
+/* Tablet: two columns and stacked special rows */
+@media only screen and (min-width: 480px) {
+  [class*="col-"] { flex-basis: calc(50% - .5rem); }
+  .col-3, .col-4, .row-three .col-1, .row-three .col-3 { flex-basis: 100%; }
+  .row-six .col-6 { flex-basis: calc(33.333% - .67rem); }
 }
 
-/* attribute selector to give some margin between columns and apply styles to flex items */
-
-[class*="col-"] {
-	margin-left: 4%;
-	flex: 0 0 92%;
-}
-
-/* Add background colors to see how much space each column is taking */
-
-.col-1 {
-	background-color: #A3CDD9;
-}
-
-.col-2 {
-	background-color: #FFFCE6;
-}
-
-/* Tablet Landscape Screen Sizes */
-@media only screen and (min-width: 480px)  {
-	
-  .col-1,
-  .col-2 {
-		flex: 0 0 44%;
-	}
-  
-  
-
-
-
-}
-/* Desktop screen Sizes */
+/* Desktop: four-column grid */
 @media only screen and (min-width: 768px) {
-  
-  
- 	.col-1 {
-		flex: 0 0 20%;
-	}
-  
-  
-  
-	.col-2 {
-		flex: 0 0 44%;
-	}
+  .row { gap: 1.5rem; }
+  [class*="col-"] { padding: 1.15rem; }
+  .col-1 { flex-basis: calc(25% - 1.125rem); }
+  .col-2 { flex-basis: calc(50% - .75rem); }
+  .col-3 { flex-basis: calc(75% - .375rem); }
+  .col-4 { flex-basis: 100%; }
+  .row-three .col-1 { flex-basis: calc(25% - 1.125rem); }
+  .row-three .col-3 { flex-basis: calc(75% - .375rem); }
+  .row-five .order-one { order: 1; }
+  .row-five .order-two { order: 2; }
+  .row-five .order-three { order: 3; }
+  .row-six .col-6 { flex-basis: calc(20% - 1.2rem); }
+}
 
+/* The fifth row changes order on smaller screens. */
+@media only screen and (max-width: 767px) {
+  .row-five .order-one { order: 1; }
+  .row-five .order-three { order: 2; }
+  .row-five .order-two { order: 3; }
 }
