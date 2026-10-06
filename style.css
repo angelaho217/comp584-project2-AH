@@ -104,3 +104,20 @@ a { color: var(--pine); font-weight: bold; }
   object-fit: contain;
   background-color: white;
 }
+
+@media only screen and (min-width: 768px) {
+  .row-one img,
+  .row-two img,
+  .row-three img {
+    height: 220px;
+    object-fit: contain;
+    background-color: white;
+  }
+
+  .row-four img,
+  .row-five img {
+    height: 220px;
+    object-fit: contain;
+    background-color: #f3ead7;
+  }
+}
